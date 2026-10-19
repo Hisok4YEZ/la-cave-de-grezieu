@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Cave de Grézieu — Caviste à Grézieu-la-Varenne</title>
+<meta name="description" content="Caviste à Grézieu-la-Varenne : vins, spiritueux, rhums arrangés et liqueurs, avec un conseil personnalisé. 2 avenue Émile Évellier. 09 54 24 43 00.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  /* Si une photo locale (dossier images/) est absente, on charge la version en ligne. */
+  window.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG' && t.dataset.remote && t.src !== t.dataset.remote) {
+      t.src = t.dataset.remote;
+    }
+  }, true);
+</script>
+<style>
+  :root {
+    --nuit: #1A1315;
+    --nuit-2: #241A1D;
+    --lie: #4A1A27;
+    --craie: #F3EDE4;
+    --liege: #BBA486;
+    --or: #C6A66A;
+    --etiquette: #ECE5D7;
+    --encre: #1E1719;
+    --gris: #675C55;
+    --serif: "Libre Caslon Display", "Big Caslon", "Baskerville", Georgia, serif;
+    --sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --marge: clamp(20px, 5vw, 80px);
+    --max: 1280px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--nuit);
+    color: var(--craie);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--or); outline-offset: 3px; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; }
+  h2 { font-size: clamp(2.3rem, 4.6vw, 3.9rem); line-height: 1.04; letter-spacing: -0.005em; }
+  p { margin: 0 0 1em; }
+
+  .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--marge); }
+  .photo { overflow: hidden; background: var(--nuit-2); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 50px; padding: 0 28px;
+    font: 500 15px/1 var(--sans); letter-spacing: .03em; text-decoration: none;
+    border: 1px solid rgba(243, 237, 228, .45); color: var(--craie); background: transparent;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+  .btn:hover { border-color: var(--craie); }
+  .btn-or { background: var(--or); border-color: var(--or); color: var(--nuit); }
+  .btn-or:hover { background: #D6B87E; border-color: #D6B87E; }
+
+  /* ——— En-tête ——— */
+  .entete { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background .4s, box-shadow .4s; }
+  .entete.defile { background: rgba(26, 19, 21, .92); box-shadow: 0 1px 0 rgba(198, 166, 106, .18); backdrop-filter: blur(10px); }
+  .entete .wrap { display: flex; align-items: center; justify-content: space-between; height: 80px; max-width: none; }
+  .marque { font-family: var(--serif); font-size: 1.35rem; text-decoration: none; }
+  .nav { display: flex; align-items: center; gap: 36px; }
+  .nav a:not(.btn) { font-size: 15px; text-decoration: none; color: rgba(243, 237, 228, .85); transition: color .2s; }
+  .nav a:not(.btn):hover { color: var(--or); }
+  .nav .btn { min-height: 42px; padding: 0 20px; }
+  .bouton-menu { display: none; background: none; border: 0; color: var(--craie); font: 500 15px var(--sans); padding: 10px 0; cursor: pointer; }
+  @media (max-width: 900px) {
+    .nav { position: fixed; inset: 0; background: var(--lie); flex-direction: column; justify-content: center; gap: 26px; opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s; }
+    .nav.ouvert { opacity: 1; visibility: visible; }
+    .nav a:not(.btn) { font-family: var(--serif); font-size: 2.3rem; color: var(--craie); }
+    .nav .btn { margin-top: 12px; }
+    .bouton-menu { display: block; position: relative; z-index: 60; }
+    .menu-ouvert .marque { position: relative; z-index: 60; }
+    .menu-ouvert .entete.defile { background: transparent; box-shadow: none; backdrop-filter: none; }
+  }
+
+  /* ——— Accueil ——— */
+  .accueil { position: relative; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr) 46vw; }
+  .accueil .texte { display: flex; flex-direction: column; justify-content: center; padding: 130px var(--marge) 72px; max-width: 760px; margin-left: auto; width: 100%; }
+  .verres { width: 92px; height: 62px; margin-bottom: 34px; color: var(--or); overflow: visible; }
+  .verres .v { transform-box: view-box; }
+  .verres .v-g { transform-origin: 36px 68px; transform: rotate(9deg); }
+  .verres .v-d { transform-origin: 84px 68px; transform: rotate(-9deg); }
+  .verres .eclat { opacity: 0; }
+  .titre { font-size: clamp(3.6rem, 7.4vw, 8rem); line-height: .94; letter-spacing: -0.015em; margin-bottom: 36px; }
+  .titre span { display: block; }
+  .titre span + span { padding-left: .55em; }
+  .accroche { font-size: clamp(1.05rem, 1.35vw, 1.2rem); color: rgba(243, 237, 228, .82); max-width: 29em; margin-bottom: 36px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+  .statut { margin: 0; font-size: 14px; color: var(--liege); display: flex; align-items: center; gap: 10px; }
+  .statut::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--liege); flex: none; }
+  .statut.ouvert::before { background: #7FB28E; }
+  .accueil .photo { position: relative; height: 100%; min-height: 100svh; }
+  .accueil .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--nuit) 0%, rgba(26, 19, 21, 0) 22%); pointer-events: none; }
+  .accueil .photo img { object-position: 40% 50%; }
+  @media (max-width: 900px) {
+    .accueil { grid-template-columns: 1fr; }
+    .accueil .texte { padding: 120px var(--marge) 48px; order: 1; }
+    .accueil .photo { min-height: 0; height: 72vh; order: 2; }
+    .accueil .photo::after { background: linear-gradient(180deg, var(--nuit) 0%, rgba(26, 19, 21, 0) 25%); }
+  }
+  @media (max-width: 480px) { .actions .btn { flex: 1 1 100%; } }
+
+  /* Un seul moment animé : le « tchin » et l'arrivée du titre */
+  @media (prefers-reduced-motion: no-preference) {
+    .verres .v-g { animation: tchin-g 1.6s .3s cubic-bezier(.3, .6, .2, 1) both; }
+    .verres .v-d { animation: tchin-d 1.6s .3s cubic-bezier(.3, .6, .2, 1) both; }
+    .verres .eclat { animation: eclat 1.6s .3s ease both; }
+    .titre span { opacity: 0; transform: translateY(24px); animation: arrive 1.1s 1s cubic-bezier(.2, .7, .1, 1) forwards; }
+    .titre span + span { animation-delay: 1.12s; }
+    .accroche, .actions, .statut { opacity: 0; animation: fondu 1s 1.5s ease forwards; }
+    .accueil .photo img { transform: scale(1.06); animation: recule 2.6s .1s cubic-bezier(.2, .6, .2, 1) forwards; }
+  }
+  @keyframes tchin-g { 0% { transform: rotate(0); } 52% { transform: rotate(12deg); } 62% { transform: rotate(10deg); } 72% { transform: rotate(12deg); } 100% { transform: rotate(9deg); } }
+  @keyframes tchin-d { 0% { transform: rotate(0); } 52% { transform: rotate(-12deg); } 62% { transform: rotate(-10deg); } 72% { transform: rotate(-12deg); } 100% { transform: rotate(-9deg); } }
+  @keyframes eclat { 0%, 50% { opacity: 0; } 58% { opacity: 1; } 90%, 100% { opacity: 0; } }
+  @keyframes arrive { to { opacity: 1; transform: none; } }
+  @keyframes fondu { to { opacity: 1; } }
+  @keyframes recule { to { transform: scale(1); } }
+
+  /* ——— Sections ——— */
+  section { padding: clamp(90px, 12vw, 170px) 0; }
+
+  /* La maison */
+  .maison .phrase { font-size: clamp(2.2rem, 4.8vw, 4.2rem); line-height: 1.08; max-width: 15em; margin-bottom: clamp(56px, 8vw, 110px); }
+  .maison .grille { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(36px, 7vw, 120px); align-items: end; }
+  .maison .photo { aspect-ratio: 3 / 4; }
+  .maison .photo img { object-position: 50% 30%; }
+  .maison .corps p { color: rgba(243, 237, 228, .8); max-width: 32em; }
+  .points { margin: 44px 0 0; display: grid; gap: 0; }
+  .points div { display: grid; grid-template-columns: 9.5em 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid rgba(198, 166, 106, .25); }
+  .points dt { font-family: var(--serif); font-size: 1.3rem; color: var(--or); line-height: 1.3; }
+  .points dd { margin: 0; color: rgba(243, 237, 228, .78); font-size: 15px; }
+  @media (max-width: 900px) {
+    .maison .grille { grid-template-columns: 1fr; }
+    .maison .photo { aspect-ratio: 4 / 5; }
+  }
+  @media (max-width: 480px) { .points div { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* Bandeau boutique */
+  .bandeau { padding: 0; }
+  .bandeau .photo { position: relative; height: clamp(300px, 58vh, 660px); }
+  .bandeau .photo img { object-position: 55% 40%; filter: brightness(.62) saturate(.82) contrast(1.06); }
+  .bandeau .photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, var(--nuit) 0%, rgba(26, 19, 21, 0) 28%, rgba(26, 19, 21, 0) 70%, var(--nuit) 100%); }
+  .bandeau figcaption { font-size: 14px; color: var(--liege); padding: 14px var(--marge) 0; max-width: var(--max); margin: 0 auto; }
+
+  /* Le cellier */
+  .cellier { background: var(--lie); }
+  .cellier .entete-section { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; margin-bottom: 56px; }
+  .cellier .entete-section p { max-width: 27em; color: rgba(243, 237, 228, .78); margin: 0; }
+  .univers { display: flex; gap: 10px; height: min(78vh, 720px); min-height: 520px; }
+  .univers article {
+    position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; cursor: default; background: var(--nuit-2);
+    transition: flex-grow .7s cubic-bezier(.3, .6, .2, 1);
+  }
+  .univers article:hover, .univers article:focus-within, .univers article.actif { flex-grow: 2.6; }
+  .univers img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.3, .6, .2, 1), filter .7s; filter: brightness(.72); }
+  .univers article:hover img, .univers article:focus-within img, .univers article.actif img { transform: scale(1.04); filter: brightness(.9); }
+  .univers .legende {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 28px;
+    background: linear-gradient(0deg, rgba(26, 19, 21, .92) 0%, rgba(26, 19, 21, .55) 55%, rgba(26, 19, 21, 0) 100%);
+  }
+  .univers h3 { font-size: clamp(1.6rem, 2.3vw, 2.2rem); line-height: 1.1; }
+  .univers h3 a { text-decoration: none; }
+  .univers h3 a::after { content: ""; position: absolute; inset: 0; }
+  .univers .legende p { margin: 12px 0 0; font-size: 15px; color: rgba(243, 237, 228, .85); max-width: 26em; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .7s, opacity .5s; }
+  .univers article:hover .legende p, .univers article:focus-within .legende p, .univers article.actif .legende p { max-height: 10em; opacity: 1; transition-delay: .15s; }
+  @media (max-width: 900px) {
+    .univers { flex-direction: column; height: auto; min-height: 0; gap: 14px; }
+    .univers article { flex: none; height: 62vw; min-height: 300px; }
+    .univers .legende p { max-height: none; opacity: 1; }
+    .univers img { filter: brightness(.78); }
+  }
+
+  /* Avis */
+  .visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .avis .wrap { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(40px, 7vw, 110px); align-items: start; }
+  .note { font-family: var(--serif); font-size: clamp(5rem, 10vw, 8.5rem); line-height: .9; margin: 0; color: var(--or); }
+  .note small { font-size: .3em; color: var(--liege); }
+  .note-sous { color: var(--liege); margin-top: 18px; font-size: 15px; }
+  .citations { display: grid; gap: 48px; }
+  .citations blockquote { margin: 0; }
+  .citations blockquote p { font-family: var(--serif); font-size: clamp(1.45rem, 2.4vw, 2rem); line-height: 1.3; margin: 0 0 14px; }
+  .citations cite { font-style: normal; font-size: 14px; color: var(--liege); }
+  .citations cite::before { content: ""; display: inline-block; width: 28px; height: 1px; background: var(--or); vertical-align: middle; margin-right: 12px; }
+  @media (max-width: 900px) { .avis .wrap { grid-template-columns: 1fr; } }
+
+  /* Visite : une étiquette */
+  .visite { background: var(--etiquette); color: var(--encre); }
+  .etiquette { border: 1px solid var(--or); padding: 10px; }
+  .etiquette-int { border: 1px solid rgba(198, 166, 106, .6); display: grid; grid-template-columns: 1fr 1fr; }
+  .visuels { display: flex; flex-direction: column; order: -1; border-right: 1px solid rgba(198, 166, 106, .6); }
+  .visuels .photo { aspect-ratio: 1140 / 1072; }
+  .visuels .plan { flex: 1; min-height: 320px; border-top: 1px solid rgba(198, 166, 106, .6); }
+  .visuels iframe { display: block; width: 100%; height: 100%; min-height: 320px; border: 0; filter: grayscale(1) sepia(.25) contrast(.95); }
+  .infos { padding: clamp(36px, 5vw, 72px); }
+  .infos h2 { margin-bottom: 36px; }
+  .bloc { margin-bottom: 28px; }
+  .bloc h3 { font-size: 1.2rem; margin-bottom: 6px; color: #8A6A33; }
+  .bloc p { margin: 0; }
+  .tel { font-family: var(--serif); font-size: 2rem; text-decoration: none; }
+  .tel:hover { color: var(--lie); }
+  .lien { font-size: 15px; text-decoration: none; border-bottom: 1px solid var(--or); padding-bottom: 1px; }
+  .lien:hover { color: var(--lie); }
+  .horaires { border-collapse: collapse; width: 100%; max-width: 380px; font-size: 15px; }
+  .horaires td { padding: 7px 0; border-bottom: 1px solid rgba(30, 23, 25, .12); vertical-align: top; }
+  .horaires td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .horaires .ferme td:last-child { color: var(--gris); }
+  .horaires tr.aujourdhui td { font-weight: 600; }
+  .petit { font-size: 14px; color: var(--gris); margin-top: 10px !important; }
+  @media (max-width: 900px) {
+    .etiquette-int { grid-template-columns: 1fr; }
+    .visuels { order: 0; border-right: 0; border-top: 1px solid rgba(198, 166, 106, .6); }
+  }
+
+  /* Pied de page */
+  .pied { padding: 70px 0 44px; font-size: 14px; color: var(--liege); }
+  .pied .haut { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; padding-bottom: 36px; border-bottom: 1px solid rgba(198, 166, 106, .2); margin-bottom: 26px; }
+  .pied .marque { display: block; color: var(--craie); font-size: 2.2rem; margin-bottom: 8px; }
+  .pied p { margin: 0; }
+  .pied a { text-decoration: none; }
+  .pied a:hover { color: var(--or); }
+  .pied .bas { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<header class="entete" id="entete">
+  <div class="wrap">
+    <a href="#accueil" class="marque">La Cave de Grézieu</a>
+    <button class="bouton-menu" id="bouton-menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#maison">La cave</a>
+      <a href="#cellier">Le cellier</a>
+      <a href="#avis">Avis</a>
+      <a href="#visite">Nous rendre visite</a>
+      <a href="tel:+33954244300" class="btn">Appeler</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="accueil" id="accueil" style="padding:0">
+    <div class="texte">
+      <svg class="verres" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <g class="v v-g">
+          <path d="M24 10 C24 30 27 40 36 41 C45 40 48 30 48 10 Z"/>
+          <path d="M25.5 22 H46.5" opacity=".55"/>
+          <path d="M36 41 V66"/>
+          <path d="M27 68 H45"/>
+        </g>
+        <g class="v v-d">
+          <path d="M72 10 C72 30 75 40 84 41 C93 40 96 30 96 10 Z"/>
+          <path d="M73.5 22 H94.5" opacity=".55"/>
+          <path d="M84 41 V66"/>
+          <path d="M75 68 H93"/>
+        </g>
+        <g class="eclat">
+          <path d="M60 1 V-6"/>
+          <path d="M53 3 L49 -2"/>
+          <path d="M67 3 L71 -2"/>
+        </g>
+      </svg>
+      <h1 class="titre"><span>La Cave</span><span>de Grézieu</span></h1>
+      <p class="accroche">Vins, spiritueux et liqueurs choisis bouteille après bouteille, et un conseil de vive voix pour trouver la bonne. Au cœur de Grézieu-la-Varenne.</p>
+      <div class="actions">
+        <a href="#visite" class="btn btn-or">Préparer sa visite</a>
+        <a href="tel:+33954244300" class="btn">09 54 24 43 00</a>
+      </div>
+      <p class="statut" id="statut">2 avenue Émile Évellier, Grézieu-la-Varenne</p>
+    </div>
+    <div class="photo">
+      <img src="images/vins-tonneau.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9R9Pyn3qTqvXA5NjHNzApQzlFj7b2e65NnvQ9fmcuOA-bgr2f-8xiYowss-FmSmNWpZTzF04WzbWI5E9NecxXNvznioSI1yrZuezMWI3tlIz7DaxAnt-mq1UWdRA4QhIX7IXltR9mwR6YHN=s2000" alt="Bouteilles de vin et verre à pied posés sur un tonneau, dans la cave" fetchpriority="high">
+    </div>
+  </section>
+
+  <section class="maison" id="maison">
+    <div class="wrap">
+      <h2 class="phrase">On entre pour une bouteille, on repart avec un conseil.</h2>
+      <div class="grille">
+        <div class="photo">
+          <img src="images/conseil.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9ShzSAW8ulOorA7ZlbQdHUy8vMI9hL3AUv38zb96SCNqFWEtkFf1GsqQ7WNqaIyQpDg0_gzwVS0aa7LQj860jngTryxvzdZI2JtkZvh8eDtqCtXFFj3fROx1oE46_d5GJkeU3twzcHhgC8=s1600" alt="Le caviste présente une bouteille devant les rayonnages de spiritueux" loading="lazy">
+        </div>
+        <div class="corps">
+          <p>La Cave de Grézieu est une cave de quartier, avenue Émile Évellier. On y trouve des vins de toutes les régions, un grand choix de spiritueux et quelques curiosités qu'on prend plaisir à faire goûter.</p>
+          <p>Dites-nous ce que vous servez, à qui, et pour quel budget : on vous oriente vers la bouteille qui convient.</p>
+          <dl class="points">
+            <div><dt>Le conseil</dt><dd>Pour un repas, un apéritif ou un cadeau, on prend le temps d'en parler.</dd></div>
+            <div><dt>Le choix</dt><dd>Vins, whiskies, gins, rhums arrangés et liqueurs de fruits.</dd></div>
+            <div><dt>Les petits prix</dt><dd>Un rayon dédié aux bonnes bouteilles à prix doux, à côté des grandes occasions.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <figure class="bandeau" style="margin:0">
+    <div class="photo">
+      <img src="images/boutique.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QcF5YiXwZur1Ex_Wm6hw9ne7_q4lFFSIoIBE8Kqlcu2Br8YjZjGkuFPSilTj5jFzClpUVizoC2AycgJjIn6TXiEHIFCQsNXXLLg-bV9xNtCJkQyixp58_LmtkAdInHh5QVLiO8=s2000" alt="L'intérieur de la boutique, rayonnages de vins et îlot central" loading="lazy">
+    </div>
+    <figcaption>La boutique, avenue Émile Évellier</figcaption>
+  </figure>
+
+  <section class="cellier" id="cellier">
+    <div class="wrap">
+      <div class="entete-section">
+        <h2>Le cellier</h2>
+        <p>Quatre rayons, de la bouteille du quotidien à celle qu'on garde pour une occasion.</p>
+      </div>
+      <div class="univers" id="univers">
+        <article class="actif">
+          <img src="images/vins.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SrVsuWFKaBFibKWnZtc938zTZ8vituEs6NMqpomYdBfLbVDgcFhEbBewlWPzmV1pjZlB16JPoQxAMor_FsxCw7GBPGWRUmlO7KGL7f2h3_axtqfy-hIKtC-giPN1lLf7Ul9vjOTZnIIE-E=s1600" alt="Bouteilles de vin rouge et verre à dégustation" loading="lazy">
+          <div class="legende">
+            <h3><a href="#visite">Les vins</a></h3>
+            <p>Rouges, blancs, rosés et bulles, de la Bourgogne à la vallée du Rhône. Des vins de tous les jours comme des bouteilles à garder.</p>
+          </div>
+        </article>
+        <article>
+          <img src="images/spiritueux.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QWXRhfuAMop2oB3fBz5HfhclTVK37G9Tf8TeFksMsJV1g_cfMnIEwWziW6OL1yQ6X0pu9jhOoU313KHfU0hFhxnAWSjAJC1fe1UcesNfZkPnzNXekcs8WFz_ygXR5puguVd__KokVFhDw=s1600" alt="Bouteilles de rhum et de liqueur au cognac" loading="lazy">
+          <div class="legende">
+            <h3><a href="#visite">Les spiritueux</a></h3>
+            <p>Whiskies, rhums, gins et cognacs : un large choix d'alcools forts, à découvrir ou à offrir.</p>
+          </div>
+        </article>
+        <article>
+          <img src="images/rhums-arranges.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Qz7fTJno-vAt0r7gBLH4KGSgTDCN-nbuwWkie06PnibdDDs4FSs4SExQ7hJHGZS_9GkbE7-Hfb64bnuhh1_u6ZcJme3vqvR2zvS2iEm4vg9zqcKZ0cja6hqqQx06DCKxfW2nU_lXT4gnI=s1600" alt="Bouteilles de rhum arrangé peintes à la main" loading="lazy">
+          <div class="legende">
+            <h3><a href="#visite">Les rhums arrangés</a></h3>
+            <p>Bouteilles peintes à la main et recettes venues des Antilles, pour l'apéritif ou pour offrir.</p>
+          </div>
+        </article>
+        <article>
+          <img src="images/liqueurs.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9R_BVnlGhfsvpbNfZUg6vLSpdjc6h1XkElvVlMEmIpVuYQenchSOoSMsPPiqhbTL-Y42AbkcQQhPWTAglQ_XzaGhiKIfSV5kY9EEuwDjyK_5uJJbgcoxryiK8-9QZ7x0tDcQRbRh7Ygk3ut=s1600" alt="Bouteilles de liqueur de menthe poivrée" style="object-position: 45% 50%" loading="lazy">
+          <div class="legende">
+            <h3><a href="#visite">Les liqueurs</a></h3>
+            <p>Liqueurs de fruits et de plantes, comme la menthe poivrée ou la framboise de la maison Jacoulot.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="avis" id="avis">
+    <div class="wrap">
+      <div>
+        <h2 class="visuellement-cache">Avis de nos clients</h2>
+        <p class="note">4,7<small> / 5</small></p>
+        <p class="note-sous">Note moyenne sur Google</p>
+      </div>
+      <div class="citations">
+        <blockquote>
+          <p>« Vendeur connaisseur et très sympathique ! Très grand choix en vin et alcool fort. »</p>
+          <cite>Guillaume F., avis Google</cite>
+        </blockquote>
+        <blockquote>
+          <p>« Très bon accueil et conseil personnalisé. Le Bourgogne qui nous a été conseillé était excellent. »</p>
+          <cite>Nicolas D., avis Google</cite>
+        </blockquote>
+        <blockquote>
+          <p>« Très belle cave à vin, l'accueil est chaleureux. »</p>
+          <cite>Jennifer D., avis Google</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="visite" id="visite">
+    <div class="wrap">
+      <div class="etiquette">
+        <div class="etiquette-int">
+          <div class="infos">
+            <h2>Nous rendre visite</h2>
+            <div class="bloc">
+              <h3>Adresse</h3>
+              <p>2 avenue Émile Évellier<br>69290 Grézieu-la-Varenne</p>
+              <p class="petit"><a class="lien" href="https://www.google.com/maps/dir/?api=1&destination=La+Cave+de+Gr%C3%A9zieu+2+Avenue+Emile+Evellier+69290+Gr%C3%A9zieu-la-Varenne" target="_blank" rel="noopener">Itinéraire</a></p>
+            </div>
+            <div class="bloc">
+              <h3>Téléphone</h3>
+              <a class="tel" href="tel:+33954244300">09 54 24 43 00</a>
+            </div>
+            <div class="bloc">
+              <h3>Horaires</h3>
+              <table class="horaires" id="horaires">
+                <tbody>
+                  <tr data-jour="1" class="ferme"><td>Lundi</td><td>Fermé</td></tr>
+                  <tr data-jour="2"><td>Mardi</td><td>15 h – 19 h</td></tr>
+                  <tr data-jour="3"><td>Mercredi</td><td>15 h – 19 h</td></tr>
+                  <tr data-jour="4"><td>Jeudi</td><td>10 h – 12 h 30<br>13 h 30 – 19 h</td></tr>
+                  <tr data-jour="5"><td>Vendredi</td><td>10 h – 19 h 30</td></tr>
+                  <tr data-jour="6"><td>Samedi</td><td>9 h 30 – 18 h</td></tr>
+                  <tr data-jour="0" class="ferme"><td>Dimanche</td><td>Fermé</td></tr>
+                </tbody>
+              </table>
+              <p class="petit">Boutique accessible en fauteuil roulant.</p>
+            </div>
+          </div>
+          <div class="visuels">
+            <div class="photo">
+              <img src="images/facade.jpg" data-remote="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Q4rdAshp7uy9Qh313c2TzsznHH8BZfEDjJz5vQ0OjG3KwQdPpI2qfleasCezdIXToDDubHTzEs1Zqn3laNDV80aT8RltpQYX7Kzd5zLxoEa2GaeLEORtwG0_bBbSIKTty2cHVYPw=s1600" alt="La façade de La Cave de Grézieu et son enseigne aux deux verres" loading="lazy">
+            </div>
+            <div class="plan">
+              <iframe title="Plan d'accès à La Cave de Grézieu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=La%20Cave%20de%20Gr%C3%A9zieu%2C%202%20Avenue%20Emile%20Evellier%2C%2069290%20Gr%C3%A9zieu-la-Varenne&z=16&output=embed"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <div class="haut">
+      <div>
+        <a href="#accueil" class="marque">La Cave de Grézieu</a>
+        <p>2 avenue Émile Évellier, 69290 Grézieu-la-Varenne</p>
+      </div>
+      <p><a href="tel:+33954244300">09 54 24 43 00</a></p>
+    </div>
+    <div class="bas">
+      <p>L'abus d'alcool est dangereux pour la santé, à consommer avec modération. Vente d'alcool interdite aux mineurs.</p>
+      <p>© 2026 La Cave de Grézieu</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* En-tête : fond au défilement */
+  var entete = document.getElementById('entete');
+  function majEntete() { entete.classList.toggle('defile', window.scrollY > 30); }
+  window.addEventListener('scroll', majEntete, { passive: true });
+  majEntete();
+
+  /* Menu mobile */
+  var bouton = document.getElementById('bouton-menu');
+  var nav = document.getElementById('nav');
+  function fermerMenu() {
+    nav.classList.remove('ouvert');
+    document.body.classList.remove('menu-ouvert');
+    bouton.setAttribute('aria-expanded', 'false');
+    bouton.textContent = 'Menu';
+  }
+  bouton.addEventListener('click', function () {
+    var ouvert = nav.classList.toggle('ouvert');
+    document.body.classList.toggle('menu-ouvert', ouvert);
+    bouton.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+    bouton.textContent = ouvert ? 'Fermer' : 'Menu';
+  });
+  nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', fermerMenu); });
+
+  /* Le cellier : un seul rayon ouvert à la fois */
+  var univers = document.querySelectorAll('#univers article');
+  univers.forEach(function (art) {
+    art.addEventListener('mouseenter', function () {
+      univers.forEach(function (a) { a.classList.toggle('actif', a === art); });
+    });
+    art.addEventListener('focusin', function () {
+      univers.forEach(function (a) { a.classList.toggle('actif', a === art); });
+    });
+  });
+
+  /* Ouvert / fermé, d'après les horaires */
+  (function () {
+    var H = {
+      0: [], 1: [],
+      2: [[900, 1140]], 3: [[900, 1140]],
+      4: [[600, 750], [810, 1140]],
+      5: [[600, 1170]],
+      6: [[570, 1080]]
+    };
+    var jours = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    function heure(m) { var h = Math.floor(m / 60), mn = m % 60; return mn ? h + ' h ' + String(mn).padStart(2, '0') : h + ' h'; }
+    var d = new Date(), j = d.getDay(), m = d.getHours() * 60 + d.getMinutes();
+    var statut = document.getElementById('statut');
+    var ligne = document.querySelector('#horaires tr[data-jour="' + j + '"]');
+    if (ligne) ligne.classList.add('aujourdhui');
+    var i, c;
+    for (i = 0; i < H[j].length; i++) {
+      c = H[j][i];
+      if (m >= c[0] && m < c[1]) {
+        statut.textContent = 'Ouvert en ce moment, jusqu\'à ' + heure(c[1]);
+        statut.classList.add('ouvert');
+        return;
+      }
+      if (m < c[0]) { statut.textContent = 'Fermé pour le moment, ouvre à ' + heure(c[0]); return; }
+    }
+    for (var k = 1; k <= 7; k++) {
+      var jj = (j + k) % 7;
+      if (H[jj].length) {
+        statut.textContent = 'Fermé pour le moment, ouvre ' + (k === 1 ? 'demain' : jours[jj]) + ' à ' + heure(H[jj][0][0]);
+        return;
+      }
+    }
+  })();
+</script>
+</body>
+</html>
